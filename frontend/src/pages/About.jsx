@@ -1,19 +1,19 @@
 import { motion } from 'framer-motion'
-import avinashImg from '../assets/avinash.jpeg'
-import anamikaImg from '../assets/anamika.jpeg'
+// import avinashImg from '../assets/avinash.jpeg'
+// import anamikaImg from '../assets/anamika.jpeg'
 
-const TEAM = [
-  {
-    name: 'Avinash Yadav',
-    role: 'CEO & Co-founder',
-    avatar: avinashImg,
-  },
-  {
-    name: 'Anamika Gupta',
-    role: 'CTO & Co-founder',
-    avatar: anamikaImg,
-  },
-]
+// const TEAM = [
+//   {
+//     name: 'Avinash Yadav',
+//     role: 'CEO & Co-founder',
+//     avatar: avinashImg,
+//   },
+//   {
+//     name: 'Anamika Gupta',
+//     role: 'CTO & Co-founder',
+//     avatar: anamikaImg,
+//   },
+// ]
 
 const VALUES = [
   { emoji: '🧠', title: 'Curiosity first',    desc: 'We believe every person is infinitely more interesting when they never stop learning.' },
@@ -56,10 +56,10 @@ export default function About() {
 
        
         {/* Team */}
-        <div className="text-center mb-10">
+        {/* <div className="text-center mb-10">
           <span className="section-label mb-3 block">The team</span>
           <h2 className="text-3xl font-display font-extrabold text-white">Meet the builders</h2>
-        </div>
+        </div> */}
 
           <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
           {TEAM.map((m, i) => (
@@ -78,7 +78,7 @@ export default function About() {
           ))}
         </div>
 
-        <div className="flex justify-center gap-3 mt-4">
+        {/* <div className="flex justify-center gap-3 mt-4">
                 <a
                   href="https://www.linkedin.com/in/avinashhhh/"
                   target="_blank"
@@ -96,7 +96,7 @@ export default function About() {
                 >
                   GitHub
                 </a>
-         </div>
+         </div> */}
 
         {/* Numbers */}
         <div className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
