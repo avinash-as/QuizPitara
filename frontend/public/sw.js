@@ -21,6 +21,8 @@ self.addEventListener('activate', (e) => {
 
 // Fetch — network first, fallback to cache
 self.addEventListener('fetch', (e) => {
+  // Only handle same-origin http(s) requests; ignore chrome-extension:, data:, etc.
+  if (!e.request.url.startsWith('http')) return
   // Don't cache API calls or socket connections
   if (e.request.url.includes('/api/') || e.request.url.includes('/socket.io')) {
     return
