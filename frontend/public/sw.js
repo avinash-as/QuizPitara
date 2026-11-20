@@ -1,4 +1,4 @@
-const CACHE_NAME = 'QuizPitara-v1'
+const CACHE_NAME = 'QuizPitara-v2'
 const STATIC_ASSETS = ['/', '/index.html', '/manifest.json']
 
 // Install — cache static assets
