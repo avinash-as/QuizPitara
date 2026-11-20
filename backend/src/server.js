@@ -35,9 +35,28 @@ process.on('uncaughtException', (err) => {
 const app = express()
 const server = http.createServer(app)
 
+// Normalise the configured client origins so a trailing slash or stray
+// whitespace in CLIENT_URL (e.g. "https://app.vercel.app/") can never break
+// CORS matching against the browser's Origin header (which has no trailing
+// slash). CLIENT_URL may also be a comma-separated list of origins.
+const normalizeOrigin = (o) => String(o || '').trim().replace(/\/+$/, '')
+const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
+  .split(',')
+  .map(normalizeOrigin)
+  .filter(Boolean)
+
+const corsOrigin = (origin, cb) => {
+  // Same-origin / server-to-server requests carry no Origin header.
+  if (!origin) return cb(null, true)
+  if (allowedOrigins.includes('*') || allowedOrigins.includes(normalizeOrigin(origin))) {
+    return cb(null, true)
+  }
+  return cb(new Error('Not allowed by CORS'))
+}
+
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:5173',
+    origin: corsOrigin,
     methods: ['GET', 'POST'],
     credentials: true,
   },
@@ -52,7 +71,7 @@ app.set('trust proxy', 1)
 
 app.use(helmet())
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: corsOrigin,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
 }))

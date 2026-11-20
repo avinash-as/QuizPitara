@@ -87,8 +87,6 @@ userSchema.methods.syncLevel = function () {
 }
 
 userSchema.set('toJSON', { virtuals: true })
-userSchema.index({ email: 1 })
-userSchema.index({ referralCode: 1 })
 userSchema.index({ role: 1 })
 
 module.exports = mongoose.model('User', userSchema)
